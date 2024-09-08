@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca en Línea</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="login-container" id="login-container">
+            <h2>Bienvenido a Banca en Línea</h2>
+            <form id="login-form">
+                <input type="text" id="identificador" placeholder="Ingrese su identificador" required>
+                <input type="password" id="password" placeholder="Ingrese su password" required>
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>
+        <div class="menu-container" id="menu-container" style="display: none;">
+            <h2 id="welcome-message"></h2>
+            <div class="menu-options">
+                <button onclick="verSaldo()">Ver Saldo</button>
+                <button onclick="giro()">Realizar Giro</button>
+                <button onclick="deposito()">Realizar Deposito</button>
+                <button onclick="salir()">Salir</button>
+            </div>
+            <div id="output"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
