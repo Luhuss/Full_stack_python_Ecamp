@@ -1,0 +1,2 @@
+Supervisor(nombre=siu, apellido=siu, rut=16, area=20)
+Supervisor(nombre=sau, apellido=sou, rut=18, area=25)
