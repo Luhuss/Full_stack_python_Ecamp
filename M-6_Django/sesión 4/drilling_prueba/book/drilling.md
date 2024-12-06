@@ -1,0 +1,87 @@
+#### crear carpeta para almacenar el proyecto
+mkdir book
+
+### ingresar a la carpeta creada
+cd book
+
+### crear entorno virtual django_development
+python3 -m venv book
+
+
+### abrir el entorno virtual
+source book/bin/activate
+
+
+### instalar django en el entorno virtual
+pip install --upgrade pip /*actualiza el pip */
+pip install django /* instala django */
+pip list /* para verificar los programas instalados */
+
+
+### crear un proyecto django
+django-admin startproject nombre_proyecto
+django-admin startproject site_django
+
+### ubicarse en la carpeta creada
+cd site_django
+
+### crear la app
+django-admin startapp book /* nombre del archivo creado en setings.py */
+
+### modificar el archivo settings.py para registrar el aplicativo o app creada en el punto 6, creado con django-admin startapp 
+INSTALLED_APPS = [
+    'book.apps.BookConfig',
+]
+
+### ejecutar migraciones
+    python manage.py migrate
+
+### ejecutar el servidor local para verificar que todo este correcto
+python manage.py runserver
+
+/* esto se hace en la carpeta urls.py 
+path('admin/', admin.site.urls),
+    path('book/', include('book.urls')),
+    path('', include('book.urls')),
+*/
+
+### crear archivo urls.py dentro de la carpeta del programa en este caso (book_2)
+from django.contrib import admin
+from django.urls import path, include
+from . import views
+
+urlpatterns = [
+    path('',views.index,name="index"),
+]
+
+#### dentro de la carpeta views.py escribir lo siguiente:
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+def index(request):
+    return HttpResponse("Bienvenido al sitio de libros")
+
+#### crear carpeta template
+book/template
+
+### archivo views.py
+from django.http import HttpResponse
+from django.views.generic import TemplateView
+
+# Create your views here.
+def index(request):
+    return HttpResponse("Bienvenido al sitio de libros")
+
+class IndexPageView(TemplateView):
+    template_name = 'index.html'
+
+### archivo urls.py
+from django.urls import path
+from . import views
+from . views import IndexPageView
+
+urlpatterns = [
+    path('inicio/', views.index, name='inicio'),
+    path('', IndexPageView.as_view(), name="index"),
+]
